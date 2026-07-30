@@ -21,11 +21,10 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.ORG_GHCR_TOKEN }}
 
       - name: Build Docker image
         run: docker build -t ghcr.io/ksvdevops/ghcr-test:latest .
 
       - name: Push Docker image
         run: docker push ghcr.io/ksvdevops/ghcr-test:latest
-
