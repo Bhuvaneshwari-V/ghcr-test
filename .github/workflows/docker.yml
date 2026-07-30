@@ -16,6 +16,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Check secret exists
+        run: |
+          if [ -z "${{ secrets.ORG_GHCR_TOKEN }}" ]; then
+            echo "Secret is missing"
+            exit 1
+          else
+            echo "Secret is available"
+          fi
+
       - name: Login to GHCR
         uses: docker/login-action@v3
         with:
